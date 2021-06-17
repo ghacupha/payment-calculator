@@ -1,7 +1,6 @@
 import {Component} from "@angular/core";
 import {FormArray, FormBuilder} from "@angular/forms";
 import {Payment} from "../models/payment.model";
-import {Invoice} from "../models/invoice.model";
 
 @Component({
   selector: 'add-payment-component',
