@@ -32,7 +32,7 @@ import {Payment} from "../models/payment.model";
     <div>
       <h4>Add Payment</h4>
       <div>
-        <form [formGroup]="paymentForm">
+        <form [formGroup]="paymentForm" (ngSubmit)="submit()">
           <h5>Add Payment</h5>
           <div class="row">
             <label for="id">ID:</label>
@@ -54,7 +54,7 @@ import {Payment} from "../models/payment.model";
             <input type="text" id="payment-amount" formControlName="paymentAmount">
           </div>
 
-          <button (click)="submit()">Add Payment</button>
+          <button type="submit" [disabled]="!paymentForm.valid">Add Payment</button>
         </form>
       </div>
       <p>Form Status: {{paymentForm.status}}</p>
@@ -69,7 +69,7 @@ export class AddPaymentComponent {
     supplierName: ['']
   });
 
-  payments!: Payment[];
+  payments: Payment[] = [];
 
   constructor(private fb: FormBuilder) {
   }
@@ -77,7 +77,6 @@ export class AddPaymentComponent {
   submit(): void {
 
     this.payments.push(
-      ...this.payments,
       {
         ...new Payment(),
         id: this.paymentForm.get("id")!.value,
