@@ -47,8 +47,40 @@
         <input type="text" id="payment-amount" formControlName="paymentAmount">
       </div>
 
+      <div formArrayName="invoices">
+        <h6>Invoices</h6>
+        <div class="row" *ngFor="let invoice of invoices.controls; let i=index">
+          <div formGroupName="{{i}}">
+            <div class="row">
+              <label for="invoiceId-{{i+1}}">Invoice Id{{i + 1}}</label>
+              <input id="invoiceId-{{i+1}}" type="text" formControlName="invoiceId">
+            </div>
+
+            <div class="row">
+              <label for="paymentId-{{i+1}}">Payment Id {{i + 1}}</label>
+              <input id="paymentId-{{i+1}}" type="text" formControlName="paymentId">
+            </div>
+
+            <div class="row">
+              <label for="invoiceAmount-{{i+1}}">Invoice Amount {{i + 1}}</label>
+              <input id="invoiceAmount-{{i+1}}" type="number" formControlName="invoiceAmount">
+            </div>
+
+            <div class="row">
+              <label for="invoiceDate-{{i+1}}">Invoice Date {{i + 1}}</label>
+              <input id="invoiceDate-{{i+1}}" type="text" formControlName="invoiceDate">
+            </div>
+            <button (click)="addInvoice()"> + Add Invoice</button>
+          </div>
+        </div>
+      </div>
       <button type="submit" [disabled]="!paymentForm.valid">Add Payment</button>
     </form>
   </div>
   <p>Form Status: {{paymentForm.status}}</p>
+  <p>Form Value: {{paymentForm.value | json}}</p>
+
+  <ul *ngFor="let payment of payments">
+    <p>Payments Value: {{payment| json}}</p>
+  </ul>
 </div>

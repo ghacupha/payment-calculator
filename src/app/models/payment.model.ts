@@ -5,5 +5,5 @@ export class Payment {
   paymentDate!: string;
   paymentAmount!: number;
   supplierName!: string;
-  invoices?: Invoice[];
+  invoices!: Invoice[];
 }
