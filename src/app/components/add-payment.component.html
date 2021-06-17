@@ -1,0 +1,54 @@
+<h4>Payments List</h4>
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Supplier Name</th>
+    <th>Amount</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let payment of payments">
+    <td>
+      {{payment.id}}
+    </td>
+    <td>
+      {{payment.supplierName}}
+    </td>
+    <td>
+      {{payment.paymentAmount}}
+    </td>
+  </tr>
+  </tbody>
+</table>
+<br/>
+<div>
+  <h4>Add Payment</h4>
+  <div>
+    <form [formGroup]="paymentForm" (ngSubmit)="submit()">
+      <h5>Add Payment</h5>
+      <div class="row">
+        <label for="id">ID</label>
+        <input id="id" type="number" formControlName="id">
+      </div>
+
+      <div class="row">
+        <label for="supplierName">Supplier Name</label>
+        <input type="text" id="supplierName" formControlName="supplierName">
+      </div>
+
+      <div class="row">
+        <label for="paymentDate">Payment Date</label>
+        <input type="text" id="paymentDate" formControlName="paymentDate">
+      </div>
+
+      <div class="row">
+        <label for="payment-amount">Payment Amount</label>
+        <input type="text" id="payment-amount" formControlName="paymentAmount">
+      </div>
+
+      <button type="submit" [disabled]="!paymentForm.valid">Add Payment</button>
+    </form>
+  </div>
+  <p>Form Status: {{paymentForm.status}}</p>
+</div>
