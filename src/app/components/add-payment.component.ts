@@ -33,18 +33,13 @@ export class AddPaymentComponent {
   }
 
   createPayment() {
-    const invoiceArr: Invoice[] = []
-    this.invoices.value.forEach((invoice: Invoice) => {
-      invoiceArr.push(invoice)
-    })
-
     return {
     ...new Payment(),
       id: this.paymentForm.get("id")!.value,
       paymentAmount: this.paymentForm.get(["paymentAmount"])!.value,
       paymentDate: this.paymentForm.get(["paymentDate"])!.value,
       supplierName: this.paymentForm.get(["supplierName"])!.value,
-      invoices: invoiceArr
+      invoices: [...this.invoices.value]
     }
   }
 
